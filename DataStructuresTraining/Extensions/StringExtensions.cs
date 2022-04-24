@@ -28,5 +28,17 @@ namespace DataStructuresTraining.Extensions
             }
             return -1;
         }
+        public static int LengthOfLastWord(this string s)
+        {
+            int lastWordLength = 0;
+            if (s[^1] == ' ') s = s.TrimEnd();
+            for (int i = s.Length - 1; i >= 0; i--)
+            {
+                if (s[i] == ' ') return lastWordLength;
+                lastWordLength++;
+            }
+            return s.Length;
+        }
     }
 }
+
