@@ -29,6 +29,20 @@ namespace DataStructuresTraining
             Console.WriteLine(list.val);
             PrintLinkedList(list.next);
         }
+        public static SingleLinkListNode? AddTwoNumbers(this SingleLinkListNode? l1, SingleLinkListNode? l2, int remain = 0)
+        {
+            if (l1 == null && l2 == null)
+                if (remain > 0) return AddTwoNumbers(new(remain), null);
+                else return null;
+
+            int curSumResult = (l1?.val ?? 0) + (l2?.val ?? 0) + Math.Max(remain, 0);
+            remain = curSumResult / 10;
+
+            if (curSumResult >= 10)
+                curSumResult -= 10;
+
+            return new(curSumResult, AddTwoNumbers(l1?.next, l2?.next, remain));
+        }
     }
 }
 
